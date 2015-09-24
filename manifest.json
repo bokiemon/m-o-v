@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "HelloWorldApp",
+  "short_name": "HelloWorldApp",
+  "description": "",
+  "version": "0.0.1",
+  "minimum_chrome_version": "38",
+
+  "icons": {
+    "16": "assets/icon_16.png",
+    "128": "assets/icon_128.png"
+  },
+
+  "app": {
+    "background": {
+      "scripts": [
+        "script/background.js", 
+        "script/lib/jquery.min.js", 
+        "script/lib/papaparse.min.js", 
+        "script/lib/handlebars-latest.js", 
+        "script/lib/jsviews.min.js",
+        "script/lib/ashe.js",
+        "script/lib/ashe.modifiers.js"]
+    }
+  },
+  
+  "permissions": [
+    "fileSystem",
+    "storage"
+  ]
+}
