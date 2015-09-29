@@ -6,6 +6,12 @@ $(function(){
   var documentationTmpl = document.getElementById('documentation-view-tmpl').innerHTML;
   var parsed = Ashe.parse(documentationTmpl,{});
   document.getElementById('documentationViewContainer').innerHTML = parsed;
+  
+  //load validation view
+  var validationTmpl = document.getElementById('validation-view-tmpl').innerHTML;
+  var parsedValidation = Ashe.parse(validationTmpl, {});
+  document.getElementById('validationViewContainer').innerHTML = parsedValidation;
+  
 });
 
 function onDriveBtnClick(eventObj) {

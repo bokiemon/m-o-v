@@ -1,6 +1,111 @@
 /* CSS file placeholder. */
-#actionBar {
-  height: 30px;
-  background-color: #2196F3
-;
+
+/* HTML Tag Styling */
+body {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Components Styling */
+#mainContainer {
+  align-items: stretch;
+  background-color: #fafafa;
+  display: flex;
+  flex-grow: 1;
+}
+
+#docPanel {
+  flex-grow: 1;
+  max-width: 30%;
+}
+
+#resultPanel {
+  border-width: 2px;
+  display: flex;
+  flex-grow: 2;
+}
+
+#resultPanel > #filePickerView {
+  align-self: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+#resultPanel > #resultView {
+  flex-grow: 1;
+}
+
+#titleBar {
+  background-color: #2196F3;
+  padding: 10px;
+  color: white;
+}
+
+.app-button {
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+}
+
+.content {
+  background-color: #FFFFFF;
+  font-size: 14px;  
+  padding: 8px;
+}
+
+.container {
+  border: 1px dashed #c3c3c3;
+  margin: 10px;
+  padding: 5px;
+}
+
+.section {
+  margin-bottom: 10px;
+}
+
+.header {
+  background-color: #F44336;
+  color: white;
+  font: 18px "arial" , sans-serif;
+  padding: 5px;
+}
+
+.hero-unit {
+  padding: 10px 0px;
+}
+
+.hero-text {
+  font-size: 20px;
+}
+
+.hero-text > .total-errors {
+  color: #F44336;
+  font-size: 22px;
+}
+
+.error > .header {
+  background-color: red !important;
+}
+
+/* Helper styles */
+.blue-background {
+  background-color: #2196F3;
+}
+
+.centralized-flex-box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.error > .header {
+  background-color: red !important;
+}
+
+.justify-middle-flex-box {
+  display: flex;
+  justify-content: center;
 }
