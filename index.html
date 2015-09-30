@@ -3,6 +3,7 @@
 
 <head>
   <title>Google Play Offline Validator</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   <!--
   <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
           rel="stylesheet">
@@ -17,7 +18,12 @@
   ng-init="mainCtrl.init()">
   
   <div id="titleBar">
-    <div>Google Play Offline Validator</div>
+    <div><i class="material-icons">view_headline</i></div>
+    <div id="title">Google Play Offline Validator</div>
+    <div class="spacer">&nbsp;</div>
+    <div id="menubar">
+      <span class="make-button" ng-click="mainCtrl.closeWindow()"><i class="material-icons">close</i></span>
+    </div>
   </div>
   
   <!--

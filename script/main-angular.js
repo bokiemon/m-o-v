@@ -34,4 +34,8 @@ app.controller('MainController', function() {
     mainCtrl.state = "SHOW_RESULTS";
   };
   
+  mainCtrl.closeWindow = function() {
+    window.close();
+  };
+  
 });

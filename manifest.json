@@ -26,6 +26,8 @@
   
   "permissions": [
     "fileSystem",
-    "storage"
+    "storage",
+    "http://fonts.googleapis.com/",
+    "https://fonts.googleapis.com/"
   ]
 }
