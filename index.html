@@ -99,7 +99,7 @@
                 </div>
                 <div class="content"> 
                   <div class="msg error-msg" ng-repeat="result in mainCtrl.results.global">
-                    <i class="material-icons">error</i>{{result.text}}
+                    <i class="material-icons">error_outline</i>{{result.text}}
                   </div>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                 <div class="content with-border"> 
                   <!-- there could be multiple errors per row. -->
                   <div ng-repeat="error in result.errors" class="msg error-msg" data-error-type="{{error.type}}">
-                    <i class="material-icons">error</i>Cell:&nbsp;{{error.col}}&nbsp;-&nbsp;{{error.text}}
+                    <i class="material-icons">error_outline</i>Cell:&nbsp;{{error.col}}&nbsp;-&nbsp;{{error.text}}
                   </div>
                 </div>
               </div>
