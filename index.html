@@ -2,26 +2,24 @@
 <html>
 
 <head>
+  
   <title>Google Play Offline Validator</title>
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <!--
-  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
-          rel="stylesheet">
-  -->
-    <link rel="stylesheet" href="style/material-icon.css">
-    <link rel="stylesheet" href="style/material.indigo-pink.min.css">
-  
+  <link rel="stylesheet" href="style/material-icon.css">
+  <link rel="stylesheet" href="style/material.indigo-pink.min.css">
   <link rel="stylesheet" href="style/styles.css">
+  
 </head>
 
 <body ng-app="musicValidatorApp" ng-controller="MainController as mainCtrl"
   ng-init="mainCtrl.init()">
   
-  <div id="titleBar">
-    <div><i class="material-icons">view_headline</i></div>
-    <div id="title">Google Play Offline Validator</div>
+  <div class="titleBar">
+    <div><i class="material-icons">music_note</i></div>
+    <div class="title">Google Play CSV File Validator</div>
     <div class="spacer">&nbsp;</div>
-    <div id="menubar">
+    <div class="menubar">
+      <span class="make-button" ng-click="mainCtrl.feedback()"><i class="material-icons">feedback</i></span>
       <span class="make-button" ng-click="mainCtrl.closeWindow()"><i class="material-icons">close</i></span>
     </div>
   </div>
@@ -34,6 +32,7 @@
     <!-- doumentation on the left -->
     <div id="docPanel" class="container">
       <div>
+        <h3 style="padding:8px;margin-top: 6px;">Hello.</h3>
         <p class="content">
             We know that setting up a feed can be daunting, so we've created the below documents to help you along during the process.
         </p>
@@ -44,64 +43,102 @@
     </div>  
     
     <!-- validation view on the right -->
-    <div id="resultPanel" class="container">
+    <div id="resultPanel" class="container" ng-class="{'no-border': mainCtrl.state == 'SHOW_RESULTS'}">
       
         <!-- file picker view -->
         <div id="filePickerView" ng-show="mainCtrl.state == 'SHOW_FILE_PICKER'">
-          File Picker
-          <button ng-click="mainCtrl.onLoadCSVFeedClicked()">Load CSV File</button>
+          <button id="filePickerBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" 
+            ng-click="mainCtrl.onLoadCSVFeedClicked()">select a csv feed from your computer</button>
         </div>
         
         <!-- result view -->
         <div id="resultView" ng-show="mainCtrl.state == 'SHOW_RESULTS'">
           
-          <div style="display:flex;">
+          <div class="titleBar resultTitlebar">
+            <!--
+            <div style="margin-right:10px" class="make-button" ng-click="mainCtrl.state='SHOW_FILE_PICKER'">
+              <i class="material-icons">keyboard_backspace</i>
+            </div>
+            -->
+            <div class="title">Validation Results</div>
+            <div class="spacer">&nbsp;</div>
+            <div class="menubar">
+              <span class="make-button" ng-click="mainCtrl.revalidate()"><i class="material-icons">replay</i></span>
+              <span class="make-button" ng-click="mainCtrl.revalidate()"><i class="material-icons">file_upload</i></span>
+            </div>
+          </div>
+          
+          <!--
+          <div id="toolbar" class="blue-background">
             <div id="validate-button" class="app-button blue-background" style="margin-right:10px"
             ng-click="mainCtrl.state='SHOW_FILE_PICKER'">Load Diff CSV File.</div>
             <div id="validate-button" class="app-button blue-background">Start Validation</div>
           </div>
-          
-          <div class="hero-unit" ng-show="mainCtrl.results.global.length > 0">
-            <div class="hero-text label">Found {{mainCtrl.results.global.length}} global errors!</div>
-          </div>
-          
-          <!-- show when there's no global errors -->  
-          <div class="section" ng-show="mainCtrl.results.global.length == 0">  
-            <div class="header green-background">
-              No global errors found.
+          -->
+          <div id="resultViewContentHolder">
+            <!--
+            <div class="hero-unit" ng-show="mainCtrl.results.global.length > 0">
+              <div class="hero-text label">Found {{mainCtrl.results.global.length}} global errors!</div>
             </div>
-          </div>
-          
-          <!-- display all global errors -->
-          <div class="section" ng-repeat="result in mainCtrl.results.global">
-            <div class="header">Global Errors</div>
-            <div class="content"> 
-              <div class="msg error-msg">{{result.text}}</div>
+            -->
+            
+            <div id="globalErrorViewContainerHolder">
+              
+              <!-- show when there's no global errors -->  
+              <div class="section" ng-show="mainCtrl.results.global.length == 0">  
+                <div class="header green-background">
+                  No global errors found.
+                </div>
+              </div>
+              
+              <div class="section" ng-show="mainCtrl.results.global.length > 0">
+                <div>
+                  <span class="mdl-badge" data-badge="{{mainCtrl.results.global.length}}">
+                    <span style="font-size:20px">Global Errors</span>
+                  </span>
+                </div>
+                <div class="content"> 
+                  <div class="msg error-msg" ng-repeat="result in mainCtrl.results.global">
+                    <i class="material-icons">error</i>{{result.text}}
+                  </div>
+                </div>
+              </div>
+              
             </div>
-          </div>
-          
-           <div class="hero-unit" ng-show="mainCtrl.results.local.length > 0">
-            <div class="hero-text label">Found {{mainCtrl.results.local.length}} rows with errors!</div>
-          </div>
-          
-          <!-- show when there's no local errors -->
-          <div class="section" ng-show="mainCtrl.results.local.length == 0">  
-            <div class="header green-background">
-              No rows have any errors.
-            </div>
-          </div>
-          
-          <!-- display all local errors (errors per row) -->
-          <div class="section" ng-repeat="result in mainCtrl.results.local">
-            <div class="header">ROW {{result.row}}&nbsp;</div>
-            <div class="content"> 
-              <!-- there could be multiple errors per row. -->
-              <div ng-repeat="error in result.errors" class="msg error-msg" data-error-type="{{error.type}}">
-                <div>CELL: {{error.col}}</div>
-                {{error.text}}
+            
+            <div id="localErrorViewContainer">
+              
+              <div class="hero-unit" ng-show="mainCtrl.results.local.length > 0">
+                <div>
+                  <span class="mdl-badge" data-badge="{{mainCtrl.results.local.length}}">
+                    <span style="font-size:20px">Rows with errors</span>
+                  </span>
+                </div>
+              </div>
+              
+              <!-- show when there's no local errors -->
+              <div class="section" ng-show="mainCtrl.results.local.length == 0">  
+                <div class="header green-background">
+                  No rows have any errors.
+                </div>
+              </div>
+              
+              <!-- display all local errors (errors per row) -->
+              <div class="section" ng-repeat="result in mainCtrl.results.local">
+                
+                <div class="header">ROW {{result.row}}&nbsp;</div>
+                
+                <div class="content with-border"> 
+                  <!-- there could be multiple errors per row. -->
+                  <div ng-repeat="error in result.errors" class="msg error-msg" data-error-type="{{error.type}}">
+                    <i class="material-icons">error</i>Cell:&nbsp;{{error.col}}&nbsp;-&nbsp;{{error.text}}
+                  </div>
+                </div>
               </div>
             </div>
+            
           </div>
+          
         </div>
         
     </div>  

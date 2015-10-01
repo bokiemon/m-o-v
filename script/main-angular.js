@@ -24,8 +24,7 @@ app.controller('MainController', function() {
     mainCtrl.results.global.push({text:"Error 2"});
     mainCtrl.results.global.push({text:"Error 3"});
     
-    mainCtrl.results.local.push({row:2, errors:[{col:1, text:"error 1"}]});
-    mainCtrl.results.local.push({row:2, errors:[{col:4, text:"error 4"}]});
+    mainCtrl.results.local.push({row:2, errors:[{col:1, text:"error 1"},{col:2, text:"error 3"}]});
     mainCtrl.results.local.push({row:3, errors:[{col:1, text:"error 1"}]});
     mainCtrl.results.local.push({row:4, errors:[{col:10, text:"error 1"}]});
     mainCtrl.results.local.push({row:10, errors:[{col:10, text:"error 1"}]});

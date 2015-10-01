@@ -3,7 +3,7 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url('style/material-icons.woff2') format('woff2');
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url('material-icons.woff2') format('woff2');
 }
 
 .material-icons {
@@ -34,14 +34,27 @@ body {
 /* Components Styling */
 #mainContainer {
   align-items: stretch;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   display: flex;
   flex-grow: 1;
 }
 
 #docPanel {
+  background-color: white;
+  border: none;
+  border-right: 1px solid rgba(0,0,0,0.14);
   flex-grow: 1;
   max-width: 30%;
+  margin: 0px;
+}
+
+#filePickerBtn {
+  font-size: 18px;
+}
+
+#globalErrorViewContainerHolder, #localErrorViewContainer {
+  border-bottom:1px solid #ebebeb; 
+  padding-top: 10px;
 }
 
 #resultPanel {
@@ -60,10 +73,17 @@ body {
 #resultPanel > #resultView {
   flex-grow: 1;
   max-height: 540px;
-  overflow: scroll;
+  border: 1px solid rgba(0,0,0,0.14)
 }
 
-#titleBar {
+#resultViewContentHolder {
+  background-color: white;
+  max-height: 454px;
+  overflow: scroll;
+  padding: 10px;
+}
+
+.titleBar {
   align-items: center;
   background-color: #2196F3;
   color: white;
@@ -72,8 +92,13 @@ body {
   padding: 10px;
 }
 
-#title {
-  margin-bottom: 5px;
+.titleBar > .title {
+  margin-left: 10px;
+}
+
+.title {
+  font-size: 16px;
+  margin-bottom: 3px;
 }
 
 .app-button {
@@ -95,6 +120,16 @@ body {
   padding: 5px;
 }
 
+.resultTitlebar {
+  background-color: white;
+  border-bottom: 1px solid rgba(0,0,0,0.14);
+  color: black;
+  
+  -webkit-box-shadow: 0px 3px 3px -1px rgba(163,163,163,1);
+  -moz-box-shadow: 0px 3px 3px -1px rgba(163,163,163,1);
+  box-shadow: 0px 3px 3px -1px rgba(163,163,163,1);
+}
+
 .section {
   margin-bottom: 10px;
 }
@@ -104,9 +139,8 @@ body {
 }
 
 .header {
-  background-color: #F44336;
+  background-color: #EC407A;
   color: white;
-  font: 18px "arial" , sans-serif;
   padding: 5px;
 }
 
@@ -127,6 +161,20 @@ body {
   background-color: red !important;
 }
 
+.error-msg {
+  align-items: center;
+  display: flex;
+}
+
+.error-msg > .material-icons {
+  color: red;
+  margin-right: 5px;
+}
+
+#toolbar {
+  display: flex;
+}
+
 /* Helper styles */
 .blue-background {
   background-color: #2196F3;
@@ -142,11 +190,20 @@ body {
   background-color: red !important;
 }
 
+.make-button {
+  cursor: pointer;
+}
+
+.no-border {
+  border: none !important;
+}
+
 .justify-middle-flex-box {
   display: flex;
   justify-content: center;
 }
 
-.make-button {
-  cursor: pointer;
+.with-border {
+  border: 1px solid #D7D7D7 !important;
+}
 }
